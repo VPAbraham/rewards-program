@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import { calculateRewards } from "../../helper-functions/calculate-rewards";
 export const RewardsCalculator = (customerData) => {
   const { name, transactions } = customerData;
-  //useeffect to store rewards data
   const [rewardsData, setRewardsData] = useState({});
 
   useEffect(() => {
     setRewardsData(calculateRewards(transactions));
   }, [transactions]);
-  console.log("rewardsData", rewardsData);
 
   const monthNames = {
     1: "January",
