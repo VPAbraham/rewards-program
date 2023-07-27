@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { calculateRewards } from "../../helper-functions/calculate-rewards";
 export const RewardsCalculator = (customerData) => {
   const { name, transactions } = customerData;
-  const [rewards, setRewards] = useState(null);
+  const [rewardsData, setRewardsData] = useState(null);
   useEffect(() => {
-    setRewards(calculateRewards(transactions));
+    setRewardsData(calculateRewards(transactions));
   }, [transactions]);
 
   const renderTransactions = () => {};
