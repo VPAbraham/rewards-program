@@ -1,23 +1,35 @@
 export const calculateRewards = (transactions) => {
+  //separate transactions by month
   const monthlyRewards = [];
-  const totalRewards = 0;
-  //separate transactions using only last 3 months
-  const recentTransactions = transactions.slice(-3);
-  recentTransactions.forEach((transaction) => {
+  const transactionsByMonth = transactions.reduce((acc, transaction) => {
+    const month = transaction.month;
+    if (!acc[month]) {
+      acc[month] = [];
+    }
+    acc[month].push(transaction);
+    return acc;
+  }, {});
+
+  const lastThreeMonths = Object.keys(transactionsByMonth).slice(-3);
+
+  lastThreeMonths.forEach((month) => {
     let rewards = 0;
-    if (transaction.amount > 100) {
-      rewards += 50;
-    }
-    if (transaction.amount > 50) {
-      rewards += transaction.amount - 50;
-    }
-    //calculate rewards for each month
-    monthlyRewards.push(rewards);
+    transactionsByMonth[month].forEach((transaction) => {
+      if (transaction.amount > 100) {
+        rewards += (transaction.amount - 100) * 2;
+      }
+      if (transaction.amount > 50) {
+        rewards += transaction.amount - 50;
+      }
+    });
+    monthlyRewards.push({ month, rewards });
   });
-  //calculate total rewards for last 3 months
-  monthlyRewards.forEach((rewards) => {
-    totalRewards += rewards;
-  });
+
+  //calculate total rewards from last three months
+  const totalRewards = monthlyRewards.reduce((acc, month) => {
+    return acc + month.rewards;
+  }, 0);
+
   //return monthly rewards and total rewards
   return { monthlyRewards, totalRewards };
 };
