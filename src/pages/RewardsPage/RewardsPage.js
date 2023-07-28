@@ -7,14 +7,14 @@ const RewardsPage = () => {
   const [isLoading, setIsLoading] = React.useState(true);
 
   //simulate an async call to an API with setTimeout
-  const getTransactionData = async () => {
-    await setTimeout(() => {
-      setTransactionData(mockTransactions);
-      setIsLoading(false);
-    }, 2000);
-  };
 
   useEffect(() => {
+    const getTransactionData = async () => {
+      await setTimeout(() => {
+        setTransactionData(mockTransactions);
+        setIsLoading(false);
+      }, 1000);
+    };
     getTransactionData();
   }, []);
 

@@ -24,6 +24,9 @@ export const RewardsCalculator = (customerData) => {
   };
 
   const renderMonthlyRewards = () => {
+    if (!rewardsData.monthlyRewards) {
+      return null;
+    }
     return rewardsData.monthlyRewards.map((month, index) => {
       return (
         <li key={index} className="rewards-calculator--transactions-list-item">
