@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { mockTransactions } from "../../mock-transaction-data";
 import { RewardsCalculator } from "../../components/RewardsCalculator/RewardsCalculator";
+import "./RewardsPage.scss";
 
 const RewardsPage = () => {
   const [transactionData, setTransactionData] = React.useState([]);

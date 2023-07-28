@@ -1,0 +1,23 @@
+.rewards-calculator {
+  border-bottom: 1px dotted #fff;
+  padding: 1rem;
+
+ &-transactions {
+
+  &--list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 0.5rem;
+      background-color: #181818;
+    }
+  }
+ }
+}
