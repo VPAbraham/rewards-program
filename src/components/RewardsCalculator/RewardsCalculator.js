@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { calculateRewards } from "../../helper-functions/calculate-rewards";
+import "./RewardsCalculator.scss";
+
 export const RewardsCalculator = (customerData) => {
   const { name, transactions } = customerData;
   const [rewardsData, setRewardsData] = useState({});
@@ -23,12 +25,15 @@ export const RewardsCalculator = (customerData) => {
     12: "December",
   };
 
-  const renderTransactions = () => {
+  const renderMonthlyRewards = () => {
+    if (!rewardsData.monthlyRewards) {
+      return null;
+    }
     return rewardsData.monthlyRewards.map((month, index) => {
       return (
         <li key={index} className="rewards-calculator--transactions-list-item">
           <div>{monthNames[month.month]}</div>
-          <div>{month.rewards}</div>
+          <div>{month.rewards} points</div>
         </li>
       );
     });
@@ -36,13 +41,13 @@ export const RewardsCalculator = (customerData) => {
 
   return (
     <div className="rewards-calculator">
-      <div className="rewards-calculator--transactions">
+      <div className="rewards-calculator-transactions">
         <h5>{name}'s Transactions</h5>
-        <ul className="rewards-calculator--transactions-list">
-          {renderTransactions()}
+        <ul className="rewards-calculator-transactions--list">
+          {renderMonthlyRewards()}
         </ul>
-        <div className="rewards-calculator--summary-total">
-          Total Rewards: {`${rewardsData.totalRewards}`}
+        <div className="rewards-calculator-summary-total">
+          Total Rewards: {`${rewardsData.totalRewards} points`}
         </div>
       </div>
     </div>
