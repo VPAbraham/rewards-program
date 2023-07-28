@@ -23,7 +23,7 @@ export const RewardsCalculator = (customerData) => {
     12: "December",
   };
 
-  const renderTransactions = () => {
+  const renderMonthlyRewards = () => {
     return rewardsData.monthlyRewards.map((month, index) => {
       return (
         <li key={index} className="rewards-calculator--transactions-list-item">
@@ -39,7 +39,7 @@ export const RewardsCalculator = (customerData) => {
       <div className="rewards-calculator--transactions">
         <h5>{name}'s Transactions</h5>
         <ul className="rewards-calculator--transactions-list">
-          {renderTransactions()}
+          {renderMonthlyRewards()}
         </ul>
         <div className="rewards-calculator--summary-total">
           Total Rewards: {`${rewardsData.totalRewards}`}
